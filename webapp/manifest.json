@@ -2,9 +2,49 @@
 	"_version": "1.12.0",
 	"sap.app": {
 		"id": "sap.ui.demo.todo",
-		"type": "application"
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{ToDoList}}",
+		"description": "{{ToDoList}}",
+		"crossNavigation": {
+			"inbounds": {
+				"intent1": {
+					"signature": {
+						"parameters": {},
+						"additionalParameters": "allowed"
+					},
+					"semanticObject": "data",
+					"action": "display",
+					"title": "Sample App",
+					"icon": "sap-icon://add"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
 	},
 	"sap.ui5": {
+		"rootView": {
+			"viewName": "sap.ui.demo.todo.view.App",
+			"type": "XML",
+			"async": true,
+			"id": "app"
+		},
+		"flexEnabled": true,
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
 		"dependencies": {
 			"minUI5Version": "1.75.0",
 			"libs": {
@@ -14,18 +54,15 @@
 				"sap.ui.unified": {}
 			}
 		},
-		"rootView": {
-			"viewName": "sap.ui.demo.todo.view.App",
-			"type": "XML",
-			"async": true,
-			"id": "app"
-		},
 		"models": {
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
 					"bundleName": "sap.ui.demo.todo.i18n.i18n",
-					"supportedLocales": ["en", "de"],
+					"supportedLocales": [
+						"en",
+						"de"
+					],
 					"fallbackLocale": "en"
 				}
 			},
@@ -40,6 +77,33 @@
 					"uri": "css/styles.css"
 				}
 			]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "sap.ui.demo.todo.view.App",
+				"controlId": "app",
+				"controlAggregation": "pages",
+				"async": true
+			},
+			"routes": [
+				{
+					"name": "RouteMainView",
+					"pattern": "",
+					"target": [
+						"TargetMainView"
+					]
+				}
+			],
+			"targets": {
+				"TargetMainView": {
+					"viewType": "XML",
+					"viewLevel": 1,
+					"viewId": "app",
+					"viewName": "MainView"
+				}
+			}
 		}
 	}
 }

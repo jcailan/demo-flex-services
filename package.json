@@ -12,7 +12,11 @@
 		"test": "npm run lint && npm run karma-ci",
 		"build": "ui5 build -a --clean-dest",
 		"build-self-contained": "ui5 build self-contained -a --clean-dest",
-		"serve-dist": "ws --compress -d dist"
+		"serve-dist": "ws --compress -d dist",
+		"build:mta": "mbt build",
+		"deploy:cf": "cross-var cf deploy mta_archives/sample_$npm_package_version.mtar",
+		"deploy": "run-s build:mta deploy:cf",
+		"build:ui": "ui5 build --clean-dest --include-task=generateManifestBundle --dest deployer/resources/webapp"
 	},
 	"dependencies": {},
 	"devDependencies": {
@@ -23,6 +27,9 @@
 		"karma-coverage": "^2.0.2",
 		"karma-ui5": "^2.2.0",
 		"local-web-server": "^4.2.1",
-		"rimraf": "^3.0.2"
+		"rimraf": "^3.0.2",
+		"cross-var": "^1.1.0",
+		"mbt": "1.0.14",
+		"npm-run-all": "^4.1.5"
 	}
 }
