@@ -17,6 +17,7 @@ modules:
       - name: sample_uaa
       - name: sample_html5_repo_runtime
       - name: sample_portal
+      - name: sample_flexibility_keyuser
   - name: sample_deployer
     type: com.sap.html5.application-content
     path: deployer
@@ -65,3 +66,8 @@ resources:
     parameters:
       service-plan: standard
       service: portal
+  - name: sample_flexibility_keyuser
+    parameters:
+      service-plan: keyuser
+      service: ui5-flexibility-keyuser
+    type: org.cloudfoundry.managed-service
